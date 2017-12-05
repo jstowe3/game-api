@@ -24,6 +24,9 @@ public class RedisHelper {
     }
     public static void setRedisHosts(String[] redisHosts) {_redis_hosts = redisHosts;}
     public static void setRedisHost(String redisHost) {_redis_host = redisHost;}
+    public static void setPool(JedisPool pool) {
+        _pool = pool;
+    }
 
     // Alias of getJedisCluster()
     public static JedisCommands jedis() {

@@ -6,9 +6,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import java.util.*;
 
-/**
- * Created by joseph.stowe on 12/5/17.
- */
 public class FeedbackStore {
 
     private Feedback feedback;
@@ -68,8 +65,8 @@ public class FeedbackStore {
                 resultKeys = jedis.zrevrange(RedisHelper.FEEDBACK_ID_INDEX_KEY, 0, limit -1);
             } else if(maxRating == minRating) {
                 Set<String> resultMembers = jedis.zrevrangeByLex(RedisHelper.RATING_FEEDBACK_INDEX_KEY,
-                        "("+Integer.toString(minRating + 1),
-                        "["+Integer.toString(maxRating),
+                        "("+Integer.toString(maxRating + 1),
+                        "["+Integer.toString(minRating),
                         0, limit);
                 resultKeys = new LinkedHashSet<>();
                 for(String member : resultMembers) {

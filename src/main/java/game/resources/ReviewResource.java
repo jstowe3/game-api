@@ -20,7 +20,7 @@ import java.util.*;
 @Produces(MediaType.APPLICATION_JSON)
 public class ReviewResource {
 
-    private int recordLimit = 15;
+    public static final int DEFAULT_LIMIT = 15;
 
     public ReviewResource() {}
 
@@ -52,6 +52,6 @@ public class ReviewResource {
             throw new WebApplicationException("maxRating: "+maxRatingValue+" must be greater or equal to minRating: "+minRatingValue,
                     Response.Status.BAD_REQUEST);
         }
-        return FeedbackStore.getRecent(maxRatingValue, minRatingValue, this.recordLimit);
+        return FeedbackStore.getRecent(maxRatingValue, minRatingValue, this.DEFAULT_LIMIT);
     }
 }
