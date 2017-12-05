@@ -28,7 +28,7 @@ public class RedisHelper {
         _pool = pool;
     }
 
-    // Alias of getJedisCluster()
+    // Alias of getJedis()
     public static JedisCommands jedis() {
         return getJedis();
     }
