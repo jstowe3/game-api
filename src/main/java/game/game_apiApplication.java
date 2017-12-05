@@ -19,29 +19,19 @@ public class game_apiApplication extends Application<game_apiConfiguration> {
     }
 
     @Override
-    public void initialize(final Bootstrap<game_apiConfiguration> bootstrap) {
-        // TODO: application initialization
-    }
+    public void initialize(final Bootstrap<game_apiConfiguration> bootstrap) {}
 
     @Override
     public void run(final game_apiConfiguration configuration,
                     final Environment environment) {
 
-        RedisHelper.setRedisHosts(configuration.getRedisHosts());
         RedisHelper.setRedisHost(configuration.getRedisHost());
 
         final ReviewResource reviewResource = new ReviewResource();
         environment.jersey().register(reviewResource);
 
-        final HelloWorldResource resource = new HelloWorldResource(
-                configuration.getTemplate(),
-                configuration.getDefaultName()
-        );
-        environment.jersey().register(resource);
-        final TemplateHealthCheck healthCheck =
-                new TemplateHealthCheck(configuration.getTemplate());
+        final ReviewHealthCheck healthCheck = new ReviewHealthCheck();
         environment.healthChecks().register("template", healthCheck);
-        environment.jersey().register(resource);
     }
 
 }
